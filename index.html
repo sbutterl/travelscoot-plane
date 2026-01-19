@@ -1,1 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Travelscoot → Plane Builder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">🛴➡️✈️ Travelscoot Plane Builder</div>
+    <div class="status" id="statusText">Drag parts onto the Travelscoot!</div>
+    <button class="btn" id="resetBtn" title="Start over">Reset</button>
+  </header>
+
+  <main class="layout">
+    <section class="toolbox" aria-label="Parts toolbox">
+      <h2>Parts</h2>
+
+      <div class="parts" id="partsTray">
+        <!-- Parts are created by JS -->
+      </div>
+
+      <div class="hint">
+        <div class="hint-title">How to play</div>
+        <ul>
+          <li>Drag parts onto the scoot.</li>
+          <li>They snap into place.</li>
+          <li>When it’s complete: tap <b>Fly!</b></li>
+        </ul>
+      </div>
+
+      <button class="btn primary" id="flyBtn" disabled>Fly!</button>
+    </section>
+
+    <section class="stage" aria-label="Workbench and flight area">
+      <canvas id="gameCanvas"></canvas>
+
+      <!-- Touch controls (shown in flight mode on touch devices) -->
+      <div class="touch-ui" id="touchUI" hidden>
+        <div class="joystick" id="joystick">
+          <div class="stick" id="stick"></div>
+        </div>
+        <button class="btn boost" id="boostBtn">BOOST</button>
+      </div>
+
+      <div class="mode-pill" id="modePill">BUILD MODE</div>
+    </section>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
 
