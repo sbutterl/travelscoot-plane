@@ -2,53 +2,66 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Travelscoot → Plane Builder</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>Travelscoot → Plane</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="topbar">
-    <div class="brand">🛴➡️✈️ Travelscoot Plane Builder</div>
-    <div class="status" id="statusText">Drag parts onto the Travelscoot!</div>
-    <button class="btn" id="resetBtn" title="Start over">Reset</button>
+    <div class="title">
+      <span class="badge">Build</span>
+      <h1>Travelscoot → Plane</h1>
+    </div>
+
+    <div class="hud">
+      <div id="status" class="status">Drag parts onto the scoot. They’ll snap!</div>
+      <button id="resetBtn" class="btn secondary" type="button">Reset</button>
+    </div>
   </header>
 
-  <main class="layout">
-    <section class="toolbox" aria-label="Parts toolbox">
-      <h2>Parts</h2>
+  <main class="stage">
+    <canvas id="c"></canvas>
 
-      <div class="parts" id="partsTray">
-        <!-- Parts are created by JS -->
-      </div>
-
-      <div class="hint">
-        <div class="hint-title">How to play</div>
-        <ul>
-          <li>Drag parts onto the scoot.</li>
-          <li>They snap into place.</li>
-          <li>When it’s complete: tap <b>Fly!</b></li>
-        </ul>
-      </div>
-
-      <button class="btn primary" id="flyBtn" disabled>Fly!</button>
-    </section>
-
-    <section class="stage" aria-label="Workbench and flight area">
-      <canvas id="gameCanvas"></canvas>
-
-      <!-- Touch controls (shown in flight mode on touch devices) -->
-      <div class="touch-ui" id="touchUI" hidden>
-        <div class="joystick" id="joystick">
-          <div class="stick" id="stick"></div>
+    <!-- Touch controls (shown automatically on touch devices) -->
+    <div id="touchControls" class="touch hidden" aria-hidden="true">
+      <div class="joystickWrap">
+        <div class="joystick" id="joy">
+          <div class="knob" id="knob"></div>
         </div>
-        <button class="btn boost" id="boostBtn">BOOST</button>
+        <div class="hint">Drag the joystick to fly</div>
       </div>
 
-      <div class="mode-pill" id="modePill">BUILD MODE</div>
-    </section>
+      <button id="boostBtn" class="btn" type="button">Boost</button>
+    </div>
+
+    <div id="help" class="help">
+      <div class="card">
+        <div class="row">
+          <strong>Builder:</strong>
+          <span>Drag wings, tail, propeller onto the scoot</span>
+        </div>
+        <div class="row">
+          <strong>Desktop:</strong>
+          <span>Arrow keys / WASD to fly, Space to boost</span>
+        </div>
+        <div class="row">
+          <strong>Tablet:</strong>
+          <span>Use the on-screen joystick + Boost button</span>
+        </div>
+      </div>
+    </div>
   </main>
+
+  <footer class="bottombar">
+    <div class="partsTitle">Parts</div>
+    <div class="partsTray" id="tray">
+      <!-- Parts are drawn on the canvas, but we show labels here for clarity -->
+      <div class="pill" data-part="wings">Wings</div>
+      <div class="pill" data-part="tail">Tail</div>
+      <div class="pill" data-part="prop">Propeller</div>
+    </div>
+  </footer>
 
   <script src="game.js"></script>
 </body>
 </html>
-
